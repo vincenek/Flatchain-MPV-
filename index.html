@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatChain - AI-Powered Fiat Blockchain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary), #1d4ed8);
+            color: white;
+            border-radius: 0 0 2rem 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .dashboard {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .transaction-form {
+            display: grid;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input, select, button {
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .ledger {
+            margin-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 2rem;
+        }
+
+        .ledger-entry {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status.valid {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .diagram {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .diagram img {
+            max-width: 800px;
+            width: 100%;
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">⚡ FlatChain</h1>
+            <p style="font-size: 1.25rem; opacity: 0.95;">
+                AI-Validated Fiat Transactions | Zero Mining | Bank-Ready Compliance
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Feature Cards -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🤖 AI Validation</h3>
+                <p style="margin: 1rem 0; color: #64748b;">
+                    Machine learning models replace traditional miners for instant fiat transaction validation
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📖 Flat Ledger</h3>
+                <p style="margin: 1rem 0; color: #64748b;">
+                    Lightweight transaction database with full audit capabilities and 5000+ TPS capacity
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🛡️ Built-in Compliance</h3>
+                <p style="margin: 1rem 0; color: #64748b;">
+                    Automated KYC/AML checks and real-time fraud detection powered by AI
+                </p>
+            </div>
+        </div>
+
+        <!-- System Diagram Placeholder -->
+        <div class="diagram">
+            <h2 style="margin-bottom: 1.5rem;">Architecture Overview</h2>
+            <img src="https://via.placeholder.com/800x400?text=System+Diagram+Coming+Soon" alt="FlatChain Architecture">
+        </div>
+
+        <!-- Live Demo Section -->
+        <div class="dashboard">
+            <h2 style="margin-bottom: 2rem;">Live Transaction Demo</h2>
+            
+            <form class="transaction-form">
+                <input type="text" placeholder="Sender Account (e.g. BANK-1234)" required>
+                <input type="text" placeholder="Receiver Account (e.g. WALLET-5678)" required>
+                
+                <select required>
+                    <option value="">Select Currency</option>
+                    <option>USD ($)</option>
+                    <option>EUR (€)</option>
+                    <option>GBP (£)</option>
+                </select>
+
+                <input type="number" placeholder="Amount" step="0.01" required>
+                <button type="submit">Validate Transaction →</button>
+            </form>
+
+            <div class="ledger">
+                <h3 style="margin-bottom: 1rem;">Live Flat Ledger</h3>
+                
+                <div class="ledger-entry">
+                    <div>
+                        <strong>TX-001</strong><br>
+                        $1,500.00 USD | BANK-1234 → WALLET-5678
+                    </div>
+                    <div class="status valid">AI-Validated</div>
+                </div>
+
+                <div class="ledger-entry">
+                    <div>
+                        <strong>TX-002</strong><br>
+                        €2,000.00 EUR | BANK-1122 → BANK-3344
+                    </div>
+                    <div class="status rejected">AML Flagged</div>
+                </div>
+
+                <div class="ledger-entry">
+                    <div>
+                        <strong>TX-003</strong><br>
+                        £500.00 GBP | WALLET-9999 → BANK-4321
+                    </div>
+                    <div class="status valid">AI-Validated</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div style="text-align: center; margin: 4rem 0;">
+            <h2>Why FlatChain?</h2>
+            <div style="display: flex; justify-content: center; gap: 3rem; margin: 2rem 0;">
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700;">0.1s</div>
+                    <div style="color: #64748b;">Avg Validation Time</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700;">$0.00</div>
+                    <div style="color: #64748b;">Transaction Fees</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700;">99.99%</div>
+                    <div style="color: #64748b;">Uptime SLA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: var(--dark); color: white; padding: 2rem; margin-top: 4rem;">
+        <div class="container" style="text-align: center;">
+            <p>🚀 FlatChain MVP | Open Source on GitHub</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">
+                Disclaimer: This is a prototype - Not handling real transactions
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
