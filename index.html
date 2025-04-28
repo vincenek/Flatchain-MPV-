@@ -6,7 +6,7 @@
     <title>FlatChain - AI-Powered Fiat Blockchain</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet>
     <style>
         :root {
             --primary: #2563eb;
@@ -160,7 +160,27 @@
             padding: 2rem;
             border-radius: 1rem;
             margin: 2rem 0;
+            border: 1px solid #e2e8f0;
             animation: zoomIn 0.8s ease-out;
+        }
+
+        .diagram-node {
+            fill: #3b82f6;
+            stroke: #1d4ed8;
+            stroke-width: 2;
+        }
+
+        .diagram-path {
+            stroke: #60a5fa;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .diagram-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            fill: #1e293b;
+            font-weight: 500;
         }
 
         .metrics-grid {
@@ -261,23 +281,32 @@
             <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
                 <!-- Left Side Nodes -->
                 <rect x="50" y="120" width="140" height="70" rx="10" class="diagram-node"/>
-                <text x="120" y="160" text-anchor="middle" class="diagram-text">Bank API</text>
+                <text x="120" y="155" text-anchor="middle" class="diagram-text">Bank API</text>
+                <text x="120" y="175" text-anchor="middle" class="diagram-text" font-size="14">(Transaction Source)</text>
                 
                 <rect x="50" y="220" width="140" height="70" rx="10" class="diagram-node"/>
-                <text x="120" y="260" text-anchor="middle" class="diagram-text">Fintech App</text>
+                <text x="120" y="255" text-anchor="middle" class="diagram-text">Fintech App</text>
+                <text x="120" y="275" text-anchor="middle" class="diagram-text" font-size="14">(Payment Initiation)</text>
 
                 <!-- AI Validator -->
                 <circle cx="400" cy="200" r="60" class="diagram-node"/>
-                <text x="400" y="200" text-anchor="middle" dy="5" class="diagram-text">AI Validator</text>
+                <text x="400" y="190" text-anchor="middle" class="diagram-text">AI Validator</text>
+                <text x="400" y="210" text-anchor="middle" class="diagram-text" font-size="14">(ML Fraud Detection)</text>
 
                 <!-- Flat Ledger -->
                 <rect x="630" y="150" width="140" height="100" rx="15" class="diagram-node"/>
-                <text x="700" y="200" text-anchor="middle" class="diagram-text">Flat Ledger</text>
+                <text x="700" y="180" text-anchor="middle" class="diagram-text">Flat Ledger</text>
+                <text x="700" y="200" text-anchor="middle" class="diagram-text" font-size="14">(Immutable Record)</text>
 
-                <!-- Connection Paths -->
+                <!-- Connection Paths with Labels -->
                 <path d="M190 155 Q 300 140 340 200" class="diagram-path"/>
+                <text x="265" y="130" class="diagram-text">Transaction Request</text>
+                
                 <path d="M190 255 Q 300 270 340 200" class="diagram-path"/>
+                <text x="265" y="290" class="diagram-text">Payment Initiation</text>
+                
                 <path d="M460 200 Q 580 200 630 200" class="diagram-path"/>
+                <text x="545" y="190" class="diagram-text">Validation Result</text>
                 
                 <!-- Arrows -->
                 <polygon points="630 200 620 195 620 205" class="diagram-path"/>
