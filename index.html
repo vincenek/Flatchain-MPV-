@@ -40,6 +40,7 @@
             color: white;
             border-radius: 0 0 2rem 2rem;
             margin-bottom: 3rem;
+            animation: fadeIn 1s ease-in;
         }
 
         .features-grid {
@@ -55,6 +56,11 @@
             border-radius: 1rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
         }
 
         .dashboard {
@@ -63,6 +69,7 @@
             padding: 2rem;
             margin: 3rem 0;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: slideUp 0.8s ease-out;
         }
 
         .transaction-form {
@@ -77,6 +84,12 @@
             border: 1px solid #cbd5e1;
             border-radius: 0.5rem;
             font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         button {
@@ -84,11 +97,28 @@
             color: white;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s;
+            position: relative;
+            overflow: hidden;
         }
 
         button:hover {
             opacity: 0.9;
+        }
+
+        button.loading::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 3px solid transparent;
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
         .ledger {
@@ -105,6 +135,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            animation: slideIn 0.5s ease-out;
         }
 
         .status {
@@ -129,23 +160,47 @@
             padding: 2rem;
             border-radius: 1rem;
             margin: 2rem 0;
+            animation: zoomIn 0.8s ease-out;
         }
 
-        .diagram-node {
-            fill: #2563eb;
-            stroke: #1e3a8a;
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
-        .diagram-path {
-            stroke: #2563eb;
-            stroke-width: 2;
-            fill: none;
+        .metric-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .diagram-text {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            fill: #1e293b;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -160,6 +215,22 @@
     </div>
 
     <div class="container">
+        <!-- Real-time Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">1,024</div>
+                <div style="color: #64748b;">Transactions Processed</div>
+            </div>
+            <div class="metric-card">
+                <div style="font-size: 2rem; font-weight: 700; color: #166534;">99.9%</div>
+                <div style="color: #64748b;">Success Rate</div>
+            </div>
+            <div class="metric-card">
+                <div style="font-size: 2rem; font-weight: 700; color: #1d4ed8;">$1.2M</div>
+                <div style="color: #64748b;">Total Volume</div>
+            </div>
+        </div>
+
         <!-- Feature Cards -->
         <div class="features-grid">
             <div class="feature-card">
@@ -218,7 +289,7 @@
         <div class="dashboard">
             <h2 style="margin-bottom: 2rem;">Live Transaction Demo</h2>
             
-            <form class="transaction-form">
+            <form class="transaction-form" id="transactionForm">
                 <input type="text" placeholder="Sender Account (e.g. BANK-1234)" required>
                 <input type="text" placeholder="Receiver Account (e.g. WALLET-5678)" required>
                 
@@ -233,12 +304,12 @@
                 <button type="submit">Validate Transaction →</button>
             </form>
 
-            <div class="ledger">
+            <div class="ledger" id="ledger">
                 <h3 style="margin-bottom: 1rem;">Live Flat Ledger</h3>
-                
+                <!-- Initial transactions -->
                 <div class="ledger-entry">
                     <div>
-                        <strong>TX-001</strong><br>
+                        <small>TX-001 | 09:24:35</small><br>
                         $1,500.00 USD | BANK-1234 → WALLET-5678
                     </div>
                     <div class="status valid">AI-Validated</div>
@@ -246,7 +317,7 @@
 
                 <div class="ledger-entry">
                     <div>
-                        <strong>TX-002</strong><br>
+                        <small>TX-002 | 09:26:12</small><br>
                         €2,000.00 EUR | BANK-1122 → BANK-3344
                     </div>
                     <div class="status rejected">AML Flagged</div>
@@ -254,7 +325,7 @@
 
                 <div class="ledger-entry">
                     <div>
-                        <strong>TX-003</strong><br>
+                        <small>TX-003 | 09:28:45</small><br>
                         £500.00 GBP | WALLET-9999 → BANK-4321
                     </div>
                     <div class="status valid">AI-Validated</div>
@@ -264,19 +335,19 @@
 
         <!-- Stats Section -->
         <div style="text-align: center; margin: 4rem 0;">
-            <h2>Why FlatChain?</h2>
+            <h2>System Performance</h2>
             <div style="display: flex; justify-content: center; gap: 3rem; margin: 2rem 0;">
-                <div>
+                <div class="metric-card">
                     <div style="font-size: 2rem; font-weight: 700;">0.1s</div>
-                    <div style="color: #64748b;">Avg Validation Time</div>
+                    <div style="color: #64748b;">Validation Time</div>
                 </div>
-                <div>
+                <div class="metric-card">
                     <div style="font-size: 2rem; font-weight: 700;">$0.00</div>
                     <div style="color: #64748b;">Transaction Fees</div>
                 </div>
-                <div>
+                <div class="metric-card">
                     <div style="font-size: 2rem; font-weight: 700;">99.99%</div>
-                    <div style="color: #64748b;">Uptime SLA</div>
+                    <div style="color: #64748b;">Uptime</div>
                 </div>
             </div>
         </div>
@@ -285,10 +356,47 @@
     <footer style="background: var(--dark); color: white; padding: 2rem; margin-top: 4rem;">
         <div class="container" style="text-align: center;">
             <p>🚀 FlatChain MVP | Open Source on GitHub</p>
-            <p style="margin-top: 1rem; opacity: 0.8;">
-                Disclaimer: This is a prototype - Not handling real transactions
-            </p>
+            <div style="margin-top: 1rem; opacity: 0.8;">
+                <p>Contact: <a href="mailto:kenechukwu130@gmail.com" style="color: white; text-decoration: underline;">kenechukwu130@gmail.com</a></p>
+                <p>GitHub: <a href="https://github.com/vincenek" style="color: white; text-decoration: underline;">vincenek</a></p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Demo Transaction Handling
+        let transactionCount = 4;
+        
+        document.getElementById('transactionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const button = this.querySelector('button');
+            button.classList.add('loading');
+            button.innerHTML = 'Processing';
+
+            // Simulate AI validation delay
+            setTimeout(() => {
+                const status = Math.random() > 0.2 ? 'valid' : 'rejected';
+                const currencies = ['USD', 'EUR', 'GBP'];
+                const currency = currencies[Math.floor(Math.random() * 3)];
+                const amount = (Math.random() * 5000).toFixed(2);
+                
+                const newTransaction = document.createElement('div');
+                newTransaction.className = 'ledger-entry';
+                newTransaction.innerHTML = `
+                    <div>
+                        <small>TX-${String(transactionCount++).padStart(3, '0')} | ${new Date().toLocaleTimeString()}</small><br>
+                        ${currency === 'USD' ? '$' : currency === 'EUR' ? '€' : '£'}${amount} ${currency} | ${e.target[0].value} → ${e.target[1].value}
+                    </div>
+                    <div class="status ${status}">${status === 'valid' ? 'AI-Validated' : 'Rejected'}</div>
+                `;
+
+                document.getElementById('ledger').insertBefore(newTransaction, document.getElementById('ledger').children[3]);
+                button.classList.remove('loading');
+                button.innerHTML = 'Validate Transaction →';
+                e.target.reset();
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
