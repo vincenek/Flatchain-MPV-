@@ -124,15 +124,28 @@
             color: #991b1b;
         }
 
-        .diagram {
-            text-align: center;
-            margin: 3rem 0;
+        .architecture-diagram {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
         }
 
-        .diagram img {
-            max-width: 800px;
-            width: 100%;
-            border-radius: 1rem;
+        .diagram-node {
+            fill: #2563eb;
+            stroke: #1e3a8a;
+        }
+
+        .diagram-path {
+            stroke: #2563eb;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .diagram-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            fill: #1e293b;
         }
     </style>
 </head>
@@ -171,10 +184,34 @@
             </div>
         </div>
 
-        <!-- System Diagram Placeholder -->
-        <div class="diagram">
-            <h2 style="margin-bottom: 1.5rem;">Architecture Overview</h2>
-            <img src="https://via.placeholder.com/800x400?text=System+Diagram+Coming+Soon" alt="FlatChain Architecture">
+        <!-- Architecture Diagram -->
+        <div class="architecture-diagram">
+            <h2 style="text-align: center; margin-bottom: 2rem;">FlatChain Architecture</h2>
+            <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Left Side Nodes -->
+                <rect x="50" y="120" width="140" height="70" rx="10" class="diagram-node"/>
+                <text x="120" y="160" text-anchor="middle" class="diagram-text">Bank API</text>
+                
+                <rect x="50" y="220" width="140" height="70" rx="10" class="diagram-node"/>
+                <text x="120" y="260" text-anchor="middle" class="diagram-text">Fintech App</text>
+
+                <!-- AI Validator -->
+                <circle cx="400" cy="200" r="60" class="diagram-node"/>
+                <text x="400" y="200" text-anchor="middle" dy="5" class="diagram-text">AI Validator</text>
+
+                <!-- Flat Ledger -->
+                <rect x="630" y="150" width="140" height="100" rx="15" class="diagram-node"/>
+                <text x="700" y="200" text-anchor="middle" class="diagram-text">Flat Ledger</text>
+
+                <!-- Connection Paths -->
+                <path d="M190 155 Q 300 140 340 200" class="diagram-path"/>
+                <path d="M190 255 Q 300 270 340 200" class="diagram-path"/>
+                <path d="M460 200 Q 580 200 630 200" class="diagram-path"/>
+                
+                <!-- Arrows -->
+                <polygon points="630 200 620 195 620 205" class="diagram-path"/>
+                <polygon points="340 200 330 195 330 205" class="diagram-path"/>
+            </svg>
         </div>
 
         <!-- Live Demo Section -->
