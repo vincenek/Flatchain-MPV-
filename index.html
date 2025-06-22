@@ -136,110 +136,268 @@
             box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.5);
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 160px 0 100px;
-            position: relative;
-            overflow: hidden;
+        /* Demo Section */
+        .demo-section {
+            padding: 160px 0 80px;
         }
 
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        .hero-text {
-            flex: 1;
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
         }
 
-        .hero-visual {
-            flex: 1;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
+        .section-title p {
+            font-size: 1.1rem;
             color: var(--gray);
-            margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .hero-buttons {
+        .demo-container {
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
 
-        .outline-button {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px 28px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .outline-button:hover {
-            background: rgba(37, 99, 235, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .visual-card {
-            background: white;
+        .demo-panel {
+            flex: 1;
+            min-width: 300px;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             padding: 30px;
             box-shadow: var(--box-shadow);
-            position: relative;
-            z-index: 2;
+            border: 1px solid rgba(230, 230, 230, 0.5);
         }
 
-        .card-header {
+        .demo-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .demo-header h3 {
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .demo-header h3 i {
+            color: var(--primary);
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
 
-        .card-title {
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .currency-select {
+            display: flex;
+            gap: 10px;
+        }
+
+        .currency-flag {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e2e8f0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .currency-flag.usd { background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); color: white; }
+        .currency-flag.eur { background: linear-gradient(135deg, #003399, #FFCC00); color: white; }
+        .currency-flag.gbp { background: linear-gradient(135deg, #00247D, #CF142B, #FFFFFF); color: #00247D; }
+        .currency-flag.ngn { background: linear-gradient(135deg, #008751, #FFFFFF, #008751); color: #008751; }
+
+        .ai-visualization {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ai-node {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .node-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .node-content {
+            flex: 1;
+        }
+
+        .node-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .node-status {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-processing {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .transaction-result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .result-title {
             font-weight: 600;
             color: var(--primary);
         }
 
-        .card-stats {
+        .result-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+
+        .result-details {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 15px;
         }
 
-        .stat-item {
-            text-align: center;
-            padding: 15px;
-            border-radius: 12px;
-            background: rgba(37, 99, 235, 0.05);
+        .detail-item {
+            display: flex;
+            flex-direction: column;
         }
 
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
+        .detail-label {
+            font-size: 14px;
+            color: var(--gray);
             margin-bottom: 5px;
         }
 
-        .stat-label {
+        .detail-value {
+            font-weight: 500;
+        }
+
+        .compliance-checks {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .compliance-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .compliance-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 14px;
-            color: var(--gray);
+        }
+
+        .compliance-icon {
+            color: var(--success);
+        }
+
+        .transaction-feed {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
         }
 
         .transaction {
@@ -295,308 +453,25 @@
             color: var(--dark);
         }
 
-        /* Features Section */
-        .features {
-            padding: 100px 0;
+        /* Animation for AI processing */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(230, 230, 230, 0.5);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 15px 10px -6px rgba(0, 0, 0, 0.05);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(37, 99, 235, 0.1);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: var(--primary);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        /* How it Works */
-        .how-it-works {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        }
-
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin-top: 50px;
-        }
-
-        .steps:before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--primary);
-            z-index: 1;
-        }
-
-        .step {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            width: 24%;
-        }
-
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 30px;
-            color: var(--primary);
-            border: 3px solid var(--primary);
-        }
-
-        .step h3 {
-            margin-bottom: 15px;
-        }
-
-        .step p {
-            color: var(--gray);
-        }
-
-        /* Benefits */
-        .benefits {
-            padding: 100px 0;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .benefit-card {
-            display: flex;
-            gap: 20px;
-        }
-
-        .benefit-icon {
-            min-width: 60px;
-            height: 60px;
-            background: rgba(37, 99, 235, 0.1);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--primary);
-        }
-
-        .benefit-content h3 {
-            margin-bottom: 10px;
-        }
-
-        .benefit-content p {
-            color: var(--gray);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border-radius: var(--border-radius);
-            margin: 50px 0;
-        }
-
-        .cta-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cta-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .cta-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .white-button {
-            background: white;
-            color: var(--primary);
-            padding: 15px 35px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 18px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .white-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 80px 0 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-            font-size: 0.9rem;
+        .pulse {
+            animation: pulse 1.5s infinite;
         }
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .hero-content {
+            .demo-container {
                 flex-direction: column;
             }
             
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .steps {
-                flex-wrap: wrap;
-                gap: 40px;
-            }
-            
-            .steps:before {
-                display: none;
-            }
-            
-            .step {
-                width: 48%;
+            .demo-panel {
+                width: 100%;
             }
         }
 
@@ -611,47 +486,16 @@
                 justify-content: center;
             }
             
-            .hero {
-                padding: 180px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: flex-start;
+            .demo-section {
+                padding: 140px 0 60px;
             }
             
             .section-title h2 {
                 font-size: 2rem;
             }
             
-            .step {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .feature-card, .visual-card {
-                padding: 20px;
-            }
-            
-            .stat-item {
-                padding: 10px;
-            }
-            
-            .stat-value {
-                font-size: 20px;
+            .result-details, .compliance-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -670,448 +514,476 @@
                 <div class="nav-links">
                     <a href="#features">Features</a>
                     <a href="#how-it-works">How It Works</a>
+                    <a href="#demo">Demo</a>
                     <a href="#benefits">Benefits</a>
-                    <a href="#use-cases">Use Cases</a>
                 </div>
-                <a href="#demo" class="cta-button">Get Started</a>
+                <a href="#contact" class="cta-button">Contact Sales</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>AI-Powered Fiat Payments for the Modern World</h1>
-                    <p>FlatChain combines blockchain security with AI intelligence to create the most efficient, compliant, and eco-friendly payment platform for real-world currencies.</p>
-                    <div class="hero-buttons">
-                        <a href="#demo" class="cta-button">Request Demo</a>
-                        <a href="#features" class="outline-button">Explore Features</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="visual-card">
-                        <div class="card-header">
-                            <div class="card-title">Live Transactions</div>
-                            <div class="card-badge">
-                                <span class="status-badge active">AI Validated</span>
-                            </div>
-                        </div>
-                        <div class="card-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">0.3s</div>
-                                <div class="stat-label">Avg. Validation</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">99.99%</div>
-                                <div class="stat-label">Success Rate</div>
-                            </div>
-                        </div>
-                        <div class="transactions-list">
-                            <div class="transaction">
-                                <div class="transaction-icon">
-                                    <i class="fas fa-exchange-alt"></i>
-                                </div>
-                                <div class="transaction-details">
-                                    <div class="transaction-title">USD to GBP Transfer</div>
-                                    <div class="transaction-meta">
-                                        <span>John Smith → Emma Johnson</span>
-                                    </div>
-                                </div>
-                                <div class="transaction-amount">$1,250.00</div>
-                            </div>
-                            <div class="transaction">
-                                <div class="transaction-icon">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </div>
-                                <div class="transaction-details">
-                                    <div class="transaction-title">E-commerce Payment</div>
-                                    <div class="transaction-meta">
-                                        <span>GlobalShop Inc.</span>
-                                    </div>
-                                </div>
-                                <div class="transaction-amount">$89.99</div>
-                            </div>
-                            <div class="transaction">
-                                <div class="transaction-icon">
-                                    <i class="fas fa-hand-holding-usd"></i>
-                                </div>
-                                <div class="transaction-details">
-                                    <div class="transaction-title">Salary Payment</div>
-                                    <div class="transaction-meta">
-                                        <span>TechCorp → Employee</span>
-                                    </div>
-                                </div>
-                                <div class="transaction-amount">$4,200.00</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
         <div class="container">
             <div class="section-title">
-                <h2>Revolutionary Payment Technology</h2>
-                <p>FlatChain combines the best of blockchain security with AI intelligence for fiat transactions</p>
+                <h2>Experience FlatChain in Action</h2>
+                <p>Try our interactive demo to see how AI validates transactions in real-time</p>
             </div>
             
-            <div class="features-grid">
-                <!-- Feature 1 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
+            <div class="demo-container">
+                <!-- Transaction Panel -->
+                <div class="demo-panel">
+                    <div class="demo-header">
+                        <h3><i class="fas fa-paper-plane"></i> Create Transaction</h3>
                     </div>
-                    <h3>AI-Validated Transactions</h3>
-                    <p>Replace miners with AI agents for faster confirmations, reduced energy usage, and enhanced fraud detection.</p>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3>Fiat-Based Ledger</h3>
-                    <p>Focus on real-world currencies (USD, EUR, GBP) with cross-border, tax-compliant payments.</p>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3>AI Processing Layer</h3>
-                    <p>Advanced pattern recognition, predictive fraud analytics, and payment optimization.</p>
-                </div>
-                
-                <!-- Feature 4 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3>FlatNodes</h3>
-                    <p>Permissioned AI nodes hosted by governments and financial institutions for secure validation.</p>
-                </div>
-                
-                <!-- Feature 5 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Real-Time Compliance</h3>
-                    <p>Automatic checks against global tax and AML laws for every transaction.</p>
-                </div>
-                
-                <!-- Feature 6 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-plug"></i>
-                    </div>
-                    <h3>Bank & API Integration</h3>
-                    <p>Seamless connection to banking systems for instant fiat-to-fiat transfers.</p>
-                </div>
-                
-                <!-- Feature 7 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-secret"></i>
-                    </div>
-                    <h3>Transparent Privacy</h3>
-                    <p>Public ledger with privacy-preserving encryption and adjustable visibility levels.</p>
-                </div>
-                
-                <!-- Feature 8 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                    <h3>Tokenless Design</h3>
-                    <p>No native token - transaction fees paid in fiat to reduce speculation.</p>
-                </div>
-                
-                <!-- Feature 9 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3>Smart Agreement Layer</h3>
-                    <p>AI-readable logic for tax withholding, regulatory reporting, and payment conditions.</p>
-                </div>
-                
-                <!-- Feature 10 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3>Cross-System Sync</h3>
-                    <p>Embed into ERP, accounting, and government systems for real-time ledger syncing.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-title">
-                <h2>How FlatChain Works</h2>
-                <p>Our AI-powered validation process makes transactions faster and more secure</p>
-            </div>
-            
-            <div class="steps">
-                <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-paper-plane"></i>
-                    </div>
-                    <h3>Initiate Transaction</h3>
-                    <p>User initiates a fiat payment through web, mobile, or API</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI Validation</h3>
-                    <p>AI agents analyze and validate the transaction in milliseconds</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-shield-check"></i>
-                    </div>
-                    <h3>Compliance Check</h3>
-                    <p>Real-time verification against global regulations</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h3>Confirmation</h3>
-                    <p>Transaction added to the immutable ledger and funds transferred</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits" id="benefits">
-        <div class="container">
-            <div class="section-title">
-                <h2>Why Choose FlatChain</h2>
-                <p>Experience the next generation of financial infrastructure</p>
-            </div>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h3>Lightning Fast</h3>
-                        <p>Transactions confirmed in under 1 second with AI validation</p>
-                    </div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h3>Eco-Friendly</h3>
-                        <p>99.9% less energy consumption than traditional blockchains</p>
-                    </div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h3>Bank-Grade Security</h3>
-                        <p>Military-grade encryption and AI fraud detection</p>
-                    </div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h3>Global Compliance</h3>
-                        <p>Automatically adheres to regulations in 150+ countries</p>
-                    </div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h3>Low Cost</h3>
-                        <p>Transaction fees up to 90% lower than traditional banking</p>
-                    </div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h3>Seamless Integration</h3>
-                        <p>Connect to existing banking and financial systems</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="demo">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Transform Your Payments?</h2>
-                <p>Join financial institutions and enterprises using FlatChain to streamline their payment systems with AI-powered efficiency.</p>
-                <button class="white-button">Request a Demo</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-link"></i>
+                    
+                    <form id="transactionForm">
+                        <div class="form-group">
+                            <label for="sender">Sender</label>
+                            <input type="text" id="sender" class="form-control" placeholder="Your Name" value="John Smith">
                         </div>
-                        <span>FlatChain</span>
+                        
+                        <div class="form-group">
+                            <label for="receiver">Receiver</label>
+                            <input type="text" id="receiver" class="form-control" placeholder="Recipient Name" value="Emma Johnson">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" id="amount" class="form-control" placeholder="0.00" min="0.01" step="0.01" value="1250.00">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Currency</label>
+                            <div class="currency-select">
+                                <div class="currency-flag usd" title="US Dollar">USD</div>
+                                <div class="currency-flag eur" title="Euro">EUR</div>
+                                <div class="currency-flag gbp" title="British Pound">GBP</div>
+                                <div class="currency-flag ngn" title="Nigerian Naira">NGN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="purpose">Payment Purpose</label>
+                            <select id="purpose" class="form-control">
+                                <option value="goods">Goods & Services</option>
+                                <option value="remittance">Remittance</option>
+                                <option value="salary">Salary Payment</option>
+                                <option value="investment">Investment</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%;">
+                            <i class="fas fa-bolt"></i> Process Transaction
+                        </button>
+                    </form>
+                    
+                    <!-- Transaction Result -->
+                    <div class="transaction-result" id="transactionResult">
+                        <div class="result-header">
+                            <div class="result-title">Transaction Completed</div>
+                            <div class="result-status">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                                <span>Success</span>
+                            </div>
+                        </div>
+                        
+                        <div class="result-details">
+                            <div class="detail-item">
+                                <div class="detail-label">Transaction ID</div>
+                                <div class="detail-value">FC-7A83B2E9</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Date & Time</div>
+                                <div class="detail-value" id="timestamp">Oct 15, 2023 14:30:15 UTC</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Amount</div>
+                                <div class="detail-value" id="resultAmount">$1,250.00</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Network Fee</div>
+                                <div class="detail-value">$0.75</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Processing Time</div>
+                                <div class="detail-value" id="processingTime">0.42s</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Energy Used</div>
+                                <div class="detail-value">0.002 kWh</div>
+                            </div>
+                        </div>
+                        
+                        <div class="compliance-checks">
+                            <div class="compliance-title">Compliance Checks</div>
+                            <div class="compliance-grid">
+                                <div class="compliance-item">
+                                    <i class="fas fa-check-circle compliance-icon"></i>
+                                    <span>AML Screening</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <i class="fas fa-check-circle compliance-icon"></i>
+                                    <span>KYC Verified</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <i class="fas fa-check-circle compliance-icon"></i>
+                                    <span>Tax Compliance</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <i class="fas fa-check-circle compliance-icon"></i>
+                                    <span>Sanctions Check</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p>AI-powered blockchain for fiat payments. Secure, efficient, and regulatory-compliant financial infrastructure.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-medium"></i></a>
+                </div>
+                
+                <!-- AI Validation Panel -->
+                <div class="demo-panel">
+                    <div class="demo-header">
+                        <h3><i class="fas fa-brain"></i> AI Validation Process</h3>
+                    </div>
+                    
+                    <div class="ai-visualization">
+                        <div class="ai-node" id="node1">
+                            <div class="node-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <div class="node-content">
+                                <div class="node-title">Transaction Initiated</div>
+                                <div class="node-status">Waiting for validation</div>
+                            </div>
+                            <div class="status-badge status-processing">Pending</div>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress1"></div>
+                        </div>
+                        
+                        <div class="ai-node" id="node2">
+                            <div class="node-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="node-content">
+                                <div class="node-title">AI Analysis</div>
+                                <div class="node-status">Pattern recognition and fraud detection</div>
+                            </div>
+                            <div class="status-badge">Pending</div>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress2"></div>
+                        </div>
+                        
+                        <div class="ai-node" id="node3">
+                            <div class="node-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="node-content">
+                                <div class="node-title">Compliance Check</div>
+                                <div class="node-status">AML, KYC, and regulatory compliance</div>
+                            </div>
+                            <div class="status-badge">Pending</div>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress3"></div>
+                        </div>
+                        
+                        <div class="ai-node" id="node4">
+                            <div class="node-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="node-content">
+                                <div class="node-title">Confirmation</div>
+                                <div class="node-status">Adding to blockchain ledger</div>
+                            </div>
+                            <div class="status-badge">Pending</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-header" style="margin-top: 30px;">
+                        <h3><i class="fas fa-list"></i> Live Transaction Feed</h3>
+                    </div>
+                    
+                    <div class="transaction-feed" id="transactionFeed">
+                        <div class="transaction">
+                            <div class="transaction-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">E-commerce Payment</div>
+                                <div class="transaction-meta">
+                                    <span>GlobalShop Inc.</span>
+                                </div>
+                            </div>
+                            <div class="transaction-amount">$89.99</div>
+                        </div>
+                        
+                        <div class="transaction">
+                            <div class="transaction-icon">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">Salary Payment</div>
+                                <div class="transaction-meta">
+                                    <span>TechCorp → Employee</span>
+                                </div>
+                            </div>
+                            <div class="transaction-amount">$4,200.00</div>
+                        </div>
+                        
+                        <div class="transaction">
+                            <div class="transaction-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">Mortgage Payment</div>
+                                <div class="transaction-meta">
+                                    <span>CityBank → Home Loan</span>
+                                </div>
+                            </div>
+                            <div class="transaction-amount">$1,850.00</div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="footer-col">
-                    <h3>Product</h3>
-                    <ul class="footer-links">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#benefits">Benefits</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">API Documentation</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Developer Portal</a></li>
-                        <li><a href="#">Compliance Hub</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Whitepapers</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contact</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> Kenechukwu130@gmail.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
-                        <li><i class="fas fa-phone"></i> +2349153072571</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 FlatChain Technologies. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </section>
 
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-                header.style.padding = '10px 0';
-            } else {
-                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.08)';
-                header.style.padding = '15px 0';
-            }
-        });
-
-        // Feature card animations
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            const transactionForm = document.getElementById('transactionForm');
+            const transactionResult = document.getElementById('transactionResult');
+            const transactionFeed = document.getElementById('transactionFeed');
             
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            transactionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                // Reset UI
+                document.querySelectorAll('.ai-node').forEach(node => {
+                    node.querySelector('.status-badge').textContent = 'Pending';
+                    node.querySelector('.status-badge').className = 'status-badge';
+                });
                 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                document.querySelectorAll('.progress-fill').forEach(progress => {
+                    progress.style.width = '0%';
+                });
+                
+                transactionResult.style.display = 'none';
+                
+                // Get form values
+                const sender = document.getElementById('sender').value;
+                const receiver = document.getElementById('receiver').value;
+                const amount = document.getElementById('amount').value;
+                const purpose = document.getElementById('purpose').value;
+                
+                // Simulate AI validation process
+                simulateAIValidation(sender, receiver, amount, purpose);
+            });
+            
+            function simulateAIValidation(sender, receiver, amount, purpose) {
+                // Node 1: Transaction Initiated
+                const node1 = document.getElementById('node1');
+                const progress1 = document.getElementById('progress1');
+                
+                setTimeout(() => {
+                    node1.classList.add('pulse');
+                    node1.querySelector('.status-badge').textContent = 'Processing';
+                    node1.querySelector('.status-badge').classList.add('status-processing');
+                    
+                    // Animate progress bar
+                    let width = 0;
+                    const interval = setInterval(() => {
+                        if (width >= 100) {
+                            clearInterval(interval);
+                            node1.classList.remove('pulse');
+                            progressToNode2();
+                        } else {
+                            width++;
+                            progress1.style.width = width + '%';
+                        }
+                    }, 10);
+                }, 500);
+            }
+            
+            function progressToNode2() {
+                // Node 2: AI Analysis
+                const node2 = document.getElementById('node2');
+                const progress2 = document.getElementById('progress2');
+                
+                setTimeout(() => {
+                    node2.classList.add('pulse');
+                    node2.querySelector('.status-badge').textContent = 'Processing';
+                    node2.querySelector('.status-badge').classList.add('status-processing');
+                    
+                    // Simulate AI thinking
+                    const thinkingPhrases = [
+                        "Analyzing transaction patterns...",
+                        "Checking for fraud indicators...",
+                        "Comparing with historical data...",
+                        "Running predictive models..."
+                    ];
+                    
+                    let currentPhrase = 0;
+                    const statusElement = node2.querySelector('.node-status');
+                    const originalText = statusElement.textContent;
+                    
+                    const phraseInterval = setInterval(() => {
+                        statusElement.textContent = thinkingPhrases[currentPhrase];
+                        currentPhrase = (currentPhrase + 1) % thinkingPhrases.length;
+                    }, 1000);
+                    
+                    // Animate progress bar
+                    let width = 0;
+                    const progressInterval = setInterval(() => {
+                        if (width >= 100) {
+                            clearInterval(progressInterval);
+                            clearInterval(phraseInterval);
+                            statusElement.textContent = originalText;
+                            node2.classList.remove('pulse');
+                            progressToNode3();
+                        } else {
+                            width++;
+                            progress2.style.width = width + '%';
+                        }
+                    }, 20);
+                }, 300);
+            }
+            
+            function progressToNode3() {
+                // Node 3: Compliance Check
+                const node3 = document.getElementById('node3');
+                const progress3 = document.getElementById('progress3');
+                
+                setTimeout(() => {
+                    node3.classList.add('pulse');
+                    node3.querySelector('.status-badge').textContent = 'Processing';
+                    node3.querySelector('.status-badge').classList.add('status-processing');
+                    
+                    // Simulate compliance checks
+                    const compliancePhrases = [
+                        "Verifying KYC status...",
+                        "Checking against AML databases...",
+                        "Confirming tax compliance...",
+                        "Validating regulatory requirements..."
+                    ];
+                    
+                    let currentPhrase = 0;
+                    const statusElement = node3.querySelector('.node-status');
+                    const originalText = statusElement.textContent;
+                    
+                    const phraseInterval = setInterval(() => {
+                        statusElement.textContent = compliancePhrases[currentPhrase];
+                        currentPhrase = (currentPhrase + 1) % compliancePhrases.length;
+                    }, 800);
+                    
+                    // Animate progress bar
+                    let width = 0;
+                    const progressInterval = setInterval(() => {
+                        if (width >= 100) {
+                            clearInterval(progressInterval);
+                            clearInterval(phraseInterval);
+                            statusElement.textContent = originalText;
+                            node3.classList.remove('pulse');
+                            progressToNode4();
+                        } else {
+                            width++;
+                            progress3.style.width = width + '%';
+                        }
+                    }, 15);
+                }, 300);
+            }
+            
+            function progressToNode4() {
+                // Node 4: Confirmation
+                const node4 = document.getElementById('node4');
+                const progress4 = document.getElementById('progress4');
+                
+                setTimeout(() => {
+                    node4.classList.add('pulse');
+                    node4.querySelector('.status-badge').textContent = 'Processing';
+                    node4.querySelector('.status-badge').classList.add('status-processing');
+                    
+                    // Animate progress bar
+                    let width = 0;
+                    const progressInterval = setInterval(() => {
+                        if (width >= 100) {
+                            clearInterval(progressInterval);
+                            node4.classList.remove('pulse');
+                            completeTransaction();
+                        } else {
+                            width++;
+                            progress4.style.width = width + '%';
+                        }
+                    }, 10);
+                }, 300);
+            }
+            
+            function completeTransaction() {
+                // Update status to success
+                document.querySelectorAll('.ai-node').forEach(node => {
+                    node.querySelector('.status-badge').textContent = 'Success';
+                    node.querySelector('.status-badge').className = 'status-badge status-success';
+                });
+                
+                // Show transaction result
+                const now = new Date();
+                const timestamp = now.toLocaleString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    timeZoneName: 'short'
+                });
+                
+                document.getElementById('timestamp').textContent = timestamp;
+                document.getElementById('resultAmount').textContent = '$' + parseFloat(document.getElementById('amount').value).toFixed(2);
+                
+                // Random processing time between 0.3s and 0.6s
+                const processingTime = (Math.random() * 0.3 + 0.3).toFixed(2);
+                document.getElementById('processingTime').textContent = processingTime + 's';
+                
+                transactionResult.style.display = 'block';
+                
+                // Add to transaction feed
+                const sender = document.getElementById('sender').value;
+                const receiver = document.getElementById('receiver').value;
+                const amount = document.getElementById('amount').value;
+                
+                const transactionItem = document.createElement('div');
+                transactionItem.className = 'transaction';
+                transactionItem.innerHTML = `
+                    <div class="transaction-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <div class="transaction-title">${sender} → ${receiver}</div>
+                        <div class="transaction-meta">
+                            <span>Funds Transfer</span>
+                        </div>
+                    </div>
+                    <div class="transaction-amount">$${parseFloat(amount).toFixed(2)}</div>
+                `;
+                
+                transactionFeed.insertBefore(transactionItem, transactionFeed.firstChild);
+            }
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                    header.style.padding = '10px 0';
+                } else {
+                    header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.08)';
+                    header.style.padding = '15px 0';
                 }
             });
-        });
-
-        // Animate stats
-        function animateValue(el, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                el.textContent = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-        
-        // Initialize when in viewport
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statValue = entry.target.querySelector('.stat-value');
-                    if (statValue && !statValue.dataset.animated) {
-                        const endValue = parseInt(statValue.textContent);
-                        statValue.dataset.animated = true;
-                        animateValue(statValue, 0, endValue, 2000);
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        document.querySelectorAll('.stat-item').forEach(item => {
-            observer.observe(item);
         });
     </script>
 </body>
