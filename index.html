@@ -125,7 +125,7 @@
             font-size: 16px;
             cursor: pointer;
             transition: var(--transition);
-            text-decoration: none;
+            text-decoration: nil;
             display: inline-block;
             box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
         }
@@ -221,24 +221,49 @@
         .currency-select {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .currency-flag {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background: #e2e8f0;
             font-weight: bold;
             font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .currency-flag.active {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .currency-flag.usd { background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); color: white; }
         .currency-flag.eur { background: linear-gradient(135deg, #003399, #FFCC00); color: white; }
         .currency-flag.gbp { background: linear-gradient(135deg, #00247D, #CF142B, #FFFFFF); color: #00247D; }
         .currency-flag.ngn { background: linear-gradient(135deg, #008751, #FFFFFF, #008751); color: #008751; }
+
+        .currency-code {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .conversion-info {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+        }
 
         .ai-visualization {
             display: flex;
@@ -554,13 +579,32 @@
                         </div>
                         
                         <div class="form-group">
-                            <label>Currency</label>
+                            <label>Select Currency</label>
                             <div class="currency-select">
-                                <div class="currency-flag usd" title="US Dollar">USD</div>
-                                <div class="currency-flag eur" title="Euro">EUR</div>
-                                <div class="currency-flag gbp" title="British Pound">GBP</div>
-                                <div class="currency-flag ngn" title="Nigerian Naira">NGN</div>
+                                <div class="currency-flag usd active" data-currency="USD" data-rate="1">
+                                    <span>USD</span>
+                                    <div class="currency-code">$</div>
+                                </div>
+                                <div class="currency-flag eur" data-currency="EUR" data-rate="0.92">
+                                    <span>EUR</span>
+                                    <div class="currency-code">€</div>
+                                </div>
+                                <div class="currency-flag gbp" data-currency="GBP" data-rate="0.79">
+                                    <span>GBP</span>
+                                    <div class="currency-code">£</div>
+                                </div>
+                                <div class="currency-flag ngn" data-currency="NGN" data-rate="1480">
+                                    <span>NGN</span>
+                                    <div class="currency-code">₦</div>
+                                </div>
                             </div>
+                            <input type="hidden" id="selectedCurrency" value="USD">
+                            <input type="hidden" id="conversionRate" value="1">
+                        </div>
+                        
+                        <div class="conversion-info" id="conversionInfo">
+                            <div><i class="fas fa-sync-alt"></i> Converting USD to <span id="targetCurrency">EUR</span> at rate: 1 USD = <span id="conversionRateDisplay">0.92</span> <span id="targetCurrencyCode">EUR</span></div>
+                            <div id="convertedAmount">$1,250.00 USD = €1,150.00 EUR</div>
                         </div>
                         
                         <div class="form-group">
@@ -604,7 +648,7 @@
                             </div>
                             <div class="detail-item">
                                 <div class="detail-label">Network Fee</div>
-                                <div class="detail-value">$0.75</div>
+                                <div class="detail-value" id="networkFee">$0.75</div>
                             </div>
                             <div class="detail-item">
                                 <div class="detail-label">Processing Time</div>
@@ -716,7 +760,7 @@
                             <div class="transaction-details">
                                 <div class="transaction-title">E-commerce Payment</div>
                                 <div class="transaction-meta">
-                                    <span>GlobalShop Inc.</span>
+                                    <span>GlobalShop Inc. • USD to GBP</span>
                                 </div>
                             </div>
                             <div class="transaction-amount">$89.99</div>
@@ -729,7 +773,7 @@
                             <div class="transaction-details">
                                 <div class="transaction-title">Salary Payment</div>
                                 <div class="transaction-meta">
-                                    <span>TechCorp → Employee</span>
+                                    <span>TechCorp → Employee • USD to EUR</span>
                                 </div>
                             </div>
                             <div class="transaction-amount">$4,200.00</div>
@@ -742,7 +786,7 @@
                             <div class="transaction-details">
                                 <div class="transaction-title">Mortgage Payment</div>
                                 <div class="transaction-meta">
-                                    <span>CityBank → Home Loan</span>
+                                    <span>CityBank → Home Loan • USD to NGN</span>
                                 </div>
                             </div>
                             <div class="transaction-amount">$1,850.00</div>
@@ -758,6 +802,48 @@
             const transactionForm = document.getElementById('transactionForm');
             const transactionResult = document.getElementById('transactionResult');
             const transactionFeed = document.getElementById('transactionFeed');
+            const currencyFlags = document.querySelectorAll('.currency-flag');
+            const conversionInfo = document.getElementById('conversionInfo');
+            const conversionRateInput = document.getElementById('conversionRate');
+            const selectedCurrencyInput = document.getElementById('selectedCurrency');
+            const amountInput = document.getElementById('amount');
+            
+            // Currency selection
+            currencyFlags.forEach(flag => {
+                flag.addEventListener('click', function() {
+                    // Remove active class from all flags
+                    currencyFlags.forEach(f => f.classList.remove('active'));
+                    
+                    // Add active class to clicked flag
+                    this.classList.add('active');
+                    
+                    // Update hidden inputs
+                    const currency = this.getAttribute('data-currency');
+                    const rate = parseFloat(this.getAttribute('data-rate'));
+                    selectedCurrencyInput.value = currency;
+                    conversionRateInput.value = rate;
+                    
+                    // Show conversion info if not USD
+                    if (currency !== 'USD') {
+                        const amount = parseFloat(amountInput.value) || 0;
+                        const convertedAmount = amount * rate;
+                        const currencySymbol = this.querySelector('.currency-code').textContent;
+                        
+                        document.getElementById('targetCurrency').textContent = currency;
+                        document.getElementById('conversionRateDisplay').textContent = rate;
+                        document.getElementById('targetCurrencyCode').textContent = currency;
+                        document.getElementById('convertedAmount').textContent = 
+                            `$${amount.toFixed(2)} USD = ${currencySymbol}${convertedAmount.toFixed(2)} ${currency}`;
+                        
+                        conversionInfo.style.display = 'block';
+                    } else {
+                        conversionInfo.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Set USD as default
+            document.querySelector('.currency-flag.usd').classList.add('active');
             
             transactionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -779,12 +865,14 @@
                 const receiver = document.getElementById('receiver').value;
                 const amount = document.getElementById('amount').value;
                 const purpose = document.getElementById('purpose').value;
+                const currency = selectedCurrencyInput.value;
+                const rate = parseFloat(conversionRateInput.value);
                 
                 // Simulate AI validation process
-                simulateAIValidation(sender, receiver, amount, purpose);
+                simulateAIValidation(sender, receiver, amount, purpose, currency, rate);
             });
             
-            function simulateAIValidation(sender, receiver, amount, purpose) {
+            function simulateAIValidation(sender, receiver, amount, purpose, currency, rate) {
                 // Node 1: Transaction Initiated
                 const node1 = document.getElementById('node1');
                 const progress1 = document.getElementById('progress1');
@@ -941,8 +1029,22 @@
                     timeZoneName: 'short'
                 });
                 
+                const currency = selectedCurrencyInput.value;
+                const rate = parseFloat(conversionRateInput.value);
+                const amount = parseFloat(document.getElementById('amount').value);
+                const currencySymbol = document.querySelector('.currency-flag.active .currency-code').textContent;
+                
                 document.getElementById('timestamp').textContent = timestamp;
-                document.getElementById('resultAmount').textContent = '$' + parseFloat(document.getElementById('amount').value).toFixed(2);
+                document.getElementById('resultAmount').textContent = 
+                    `${currencySymbol}${(amount * rate).toFixed(2)}`;
+                
+                // Calculate network fee
+                let networkFee = 0.75;
+                if(currency !== 'USD') {
+                    networkFee = 0.75 * rate;
+                }
+                document.getElementById('networkFee').textContent = 
+                    `${currency !== 'USD' ? currencySymbol : '$'}${networkFee.toFixed(2)}`;
                 
                 // Random processing time between 0.3s and 0.6s
                 const processingTime = (Math.random() * 0.3 + 0.3).toFixed(2);
@@ -953,7 +1055,6 @@
                 // Add to transaction feed
                 const sender = document.getElementById('sender').value;
                 const receiver = document.getElementById('receiver').value;
-                const amount = document.getElementById('amount').value;
                 
                 const transactionItem = document.createElement('div');
                 transactionItem.className = 'transaction';
@@ -964,10 +1065,10 @@
                     <div class="transaction-details">
                         <div class="transaction-title">${sender} → ${receiver}</div>
                         <div class="transaction-meta">
-                            <span>Funds Transfer</span>
+                            <span>Funds Transfer • USD to ${currency}</span>
                         </div>
                     </div>
-                    <div class="transaction-amount">$${parseFloat(amount).toFixed(2)}</div>
+                    <div class="transaction-amount">${currencySymbol}${(amount * rate).toFixed(2)}</div>
                 `;
                 
                 transactionFeed.insertBefore(transactionItem, transactionFeed.firstChild);
