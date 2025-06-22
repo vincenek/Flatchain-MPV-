@@ -17,8 +17,8 @@
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --border-radius: 12px;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-radius: 16px;
             --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
             --transition: all 0.3s ease;
         }
@@ -36,7 +36,6 @@
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
-            padding-bottom: 60px;
         }
 
         .container {
@@ -48,20 +47,20 @@
 
         /* Header Styles */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 15px 0;
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
         }
 
         .logo {
@@ -71,6 +70,7 @@
             font-weight: 700;
             font-size: 24px;
             color: var(--primary);
+            text-decoration: none;
         }
 
         .logo-icon {
@@ -78,10 +78,11 @@
             color: white;
             width: 40px;
             height: 40px;
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 20px;
         }
 
         .nav-links {
@@ -95,72 +96,85 @@
             font-weight: 500;
             font-size: 16px;
             transition: var(--transition);
+            padding: 8px 0;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
         }
 
         .cta-button {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
         }
 
         .cta-button:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.5);
         }
 
         /* Hero Section */
         .hero {
             padding: 160px 0 100px;
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-            z-index: -1;
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-visual {
+            flex: 1;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .hero p {
             font-size: 1.25rem;
             color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 40px;
+            margin-bottom: 40px;
+            max-width: 600px;
         }
 
         .hero-buttons {
             display: flex;
             gap: 15px;
-            justify-content: center;
             margin-top: 30px;
         }
 
@@ -168,8 +182,8 @@
             background: transparent;
             color: var(--primary);
             border: 2px solid var(--primary);
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
@@ -179,10 +193,113 @@
 
         .outline-button:hover {
             background: rgba(37, 99, 235, 0.1);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
-        /* Features Grid */
+        .visual-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .card-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .transaction {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transaction:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--success);
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+
+        .transaction-details {
+            flex: 1;
+        }
+
+        .transaction-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .transaction-meta {
+            display: flex;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .transaction-amount {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
         .section-title {
             text-align: center;
             margin-bottom: 60px;
@@ -201,10 +318,6 @@
             margin: 0 auto;
         }
 
-        .features {
-            padding: 100px 0;
-        }
-
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -217,8 +330,8 @@
             padding: 30px;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(230, 230, 230, 0.5);
         }
 
         .feature-card:hover {
@@ -249,90 +362,94 @@
             margin-bottom: 20px;
         }
 
-        /* Architecture Diagram */
-        .architecture {
+        /* How it Works */
+        .how-it-works {
             padding: 100px 0;
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
         }
 
-        .architecture-diagram {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 40px;
-            box-shadow: var(--box-shadow);
-            margin-top: 50px;
+        .steps {
+            display: flex;
+            justify-content: space-between;
             position: relative;
-            overflow: hidden;
+            margin-top: 50px;
         }
 
-        .layer {
+        .steps:before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            z-index: 1;
+        }
+
+        .step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 24%;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
             display: flex;
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #e2e8f0;
             align-items: center;
-        }
-
-        .layer:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .layer-label {
-            width: 200px;
-            font-weight: 600;
-            font-size: 18px;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
             color: var(--primary);
+            border: 3px solid var(--primary);
         }
 
-        .layer-components {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            flex: 1;
+        .step h3 {
+            margin-bottom: 15px;
         }
 
-        .component {
-            background: rgba(37, 99, 235, 0.1);
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 500;
+        .step p {
+            color: var(--gray);
         }
 
-        /* Use Cases */
-        .use-cases {
+        /* Benefits */
+        .benefits {
             padding: 100px 0;
         }
 
-        .case-grid {
+        .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-top: 50px;
         }
 
-        .case-card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
+        .benefit-card {
+            display: flex;
+            gap: 20px;
         }
 
-        .case-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .case-card h3 {
+        .benefit-icon {
+            min-width: 60px;
+            height: 60px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
         }
 
-        .case-card h3 i {
-            color: var(--primary);
+        .benefit-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .benefit-content p {
+            color: var(--gray);
         }
 
         /* CTA Section */
@@ -365,24 +482,25 @@
             background: white;
             color: var(--primary);
             padding: 15px 35px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 700;
             font-size: 18px;
             cursor: pointer;
             transition: var(--transition);
             border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .white-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 60px 0 30px;
+            padding: 80px 0 30px;
         }
 
         .footer-grid {
@@ -459,14 +577,46 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .steps {
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+            
+            .steps:before {
+                display: none;
+            }
+            
+            .step {
+                width: 48%;
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
                 gap: 20px;
             }
             
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 180px 0 80px;
+            }
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             .hero p {
@@ -475,39 +625,33 @@
             
             .hero-buttons {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
             }
             
             .section-title h2 {
                 font-size: 2rem;
             }
             
-            .layer {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .layer-label {
-                margin-bottom: 15px;
+            .step {
+                width: 100%;
             }
         }
 
         @media (max-width: 480px) {
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero {
-                padding: 140px 0 80px;
-            }
-            
             .hero h1 {
                 font-size: 2rem;
             }
             
-            .feature-card, .case-card {
+            .feature-card, .visual-card {
                 padding: 20px;
+            }
+            
+            .stat-item {
+                padding: 10px;
+            }
+            
+            .stat-value {
+                font-size: 20px;
             }
         }
     </style>
@@ -517,19 +661,19 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">
+                <a href="#" class="logo">
                     <div class="logo-icon">
                         <i class="fas fa-link"></i>
                     </div>
                     <span>FlatChain</span>
-                </div>
+                </a>
                 <div class="nav-links">
                     <a href="#features">Features</a>
-                    <a href="#architecture">Architecture</a>
-                    <a href="#usecases">Use Cases</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#benefits">Benefits</a>
+                    <a href="#use-cases">Use Cases</a>
                 </div>
-                <a href="#demo" class="cta-button">Request Demo</a>
+                <a href="#demo" class="cta-button">Get Started</a>
             </nav>
         </div>
     </header>
@@ -537,11 +681,73 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Revolutionizing Fiat Payments with AI-Powered Blockchain</h1>
-            <p>FlatChain combines the security of blockchain with AI intelligence to create the world's most efficient, compliant, and eco-friendly payment platform for fiat currencies.</p>
-            <div class="hero-buttons">
-                <a href="#features" class="cta-button">Explore Features</a>
-                <a href="#contact" class="outline-button">Contact Sales</a>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>AI-Powered Fiat Payments for the Modern World</h1>
+                    <p>FlatChain combines blockchain security with AI intelligence to create the most efficient, compliant, and eco-friendly payment platform for real-world currencies.</p>
+                    <div class="hero-buttons">
+                        <a href="#demo" class="cta-button">Request Demo</a>
+                        <a href="#features" class="outline-button">Explore Features</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="visual-card">
+                        <div class="card-header">
+                            <div class="card-title">Live Transactions</div>
+                            <div class="card-badge">
+                                <span class="status-badge active">AI Validated</span>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">0.3s</div>
+                                <div class="stat-label">Avg. Validation</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">99.99%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                        </div>
+                        <div class="transactions-list">
+                            <div class="transaction">
+                                <div class="transaction-icon">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">USD to GBP Transfer</div>
+                                    <div class="transaction-meta">
+                                        <span>John Smith → Emma Johnson</span>
+                                    </div>
+                                </div>
+                                <div class="transaction-amount">$1,250.00</div>
+                            </div>
+                            <div class="transaction">
+                                <div class="transaction-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">E-commerce Payment</div>
+                                    <div class="transaction-meta">
+                                        <span>GlobalShop Inc.</span>
+                                    </div>
+                                </div>
+                                <div class="transaction-amount">$89.99</div>
+                            </div>
+                            <div class="transaction">
+                                <div class="transaction-icon">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Salary Payment</div>
+                                    <div class="transaction-meta">
+                                        <span>TechCorp → Employee</span>
+                                    </div>
+                                </div>
+                                <div class="transaction-amount">$4,200.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -550,8 +756,8 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
-                <h2>Core Features</h2>
-                <p>FlatChain's innovative approach to fiat payments combines AI validation, real-time compliance, and tokenless design</p>
+                <h2>Revolutionary Payment Technology</h2>
+                <p>FlatChain combines the best of blockchain security with AI intelligence for fiat transactions</p>
             </div>
             
             <div class="features-grid">
@@ -648,92 +854,117 @@
         </div>
     </section>
 
-    <!-- Architecture Section -->
-    <section class="architecture" id="architecture">
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
             <div class="section-title">
-                <h2>System Architecture</h2>
-                <p>FlatChain's permissioned blockchain infrastructure combines AI validation with traditional financial systems</p>
+                <h2>How FlatChain Works</h2>
+                <p>Our AI-powered validation process makes transactions faster and more secure</p>
             </div>
             
-            <div class="architecture-diagram">
-                <div class="layer">
-                    <div class="layer-label">Frontend</div>
-                    <div class="layer-components">
-                        <div class="component">Web Dashboard</div>
-                        <div class="component">Mobile Apps</div>
-                        <div class="component">API Gateway</div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-paper-plane"></i>
                     </div>
+                    <h3>Initiate Transaction</h3>
+                    <p>User initiates a fiat payment through web, mobile, or API</p>
                 </div>
                 
-                <div class="layer">
-                    <div class="layer-label">Processing Layer</div>
-                    <div class="layer-components">
-                        <div class="component">AI Validation Engine</div>
-                        <div class="component">Compliance Check</div>
-                        <div class="component">Fraud Detection</div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-robot"></i>
                     </div>
+                    <h3>AI Validation</h3>
+                    <p>AI agents analyze and validate the transaction in milliseconds</p>
                 </div>
                 
-                <div class="layer">
-                    <div class="layer-label">Blockchain Core</div>
-                    <div class="layer-components">
-                        <div class="component">Fiat Ledger</div>
-                        <div class="component">FlatNodes</div>
-                        <div class="component">Smart Agreements</div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-shield-check"></i>
                     </div>
+                    <h3>Compliance Check</h3>
+                    <p>Real-time verification against global regulations</p>
                 </div>
                 
-                <div class="layer">
-                    <div class="layer-label">Integrations</div>
-                    <div class="layer-components">
-                        <div class="component">Banking APIs</div>
-                        <div class="component">ERP Systems</div>
-                        <div class="component">Tax Authorities</div>
-                        <div class="component">Payment Processors</div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
                     </div>
+                    <h3>Confirmation</h3>
+                    <p>Transaction added to the immutable ledger and funds transferred</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Use Cases -->
-    <section class="use-cases" id="usecases">
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
         <div class="container">
             <div class="section-title">
-                <h2>Industry Use Cases</h2>
-                <p>How FlatChain transforms financial operations across multiple sectors</p>
+                <h2>Why Choose FlatChain</h2>
+                <p>Experience the next generation of financial infrastructure</p>
             </div>
             
-            <div class="case-grid">
-                <div class="case-card">
-                    <h3><i class="fas fa-university"></i> Banking</h3>
-                    <p>Real-time interbank settlements with automated compliance checks and reduced processing fees.</p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Lightning Fast</h3>
+                        <p>Transactions confirmed in under 1 second with AI validation</p>
+                    </div>
                 </div>
                 
-                <div class="case-card">
-                    <h3><i class="fas fa-globe"></i> Remittances</h3>
-                    <p>Cross-border payments with instant currency conversion and minimized fees.</p>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Eco-Friendly</h3>
+                        <p>99.9% less energy consumption than traditional blockchains</p>
+                    </div>
                 </div>
                 
-                <div class="case-card">
-                    <h3><i class="fas fa-building"></i> Enterprise</h3>
-                    <p>Automated accounts payable/receivable with ERP integration and real-time reconciliation.</p>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Bank-Grade Security</h3>
+                        <p>Military-grade encryption and AI fraud detection</p>
+                    </div>
                 </div>
                 
-                <div class="case-card">
-                    <h3><i class="fas fa-landmark"></i> Government</h3>
-                    <p>Tax collection and distribution with transparent tracking and automatic reporting.</p>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Global Compliance</h3>
+                        <p>Automatically adheres to regulations in 150+ countries</p>
+                    </div>
                 </div>
                 
-                <div class="case-card">
-                    <h3><i class="fas fa-store"></i> E-Commerce</h3>
-                    <p>Instant payment processing with built-in tax calculation and fraud prevention.</p>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Low Cost</h3>
+                        <p>Transaction fees up to 90% lower than traditional banking</p>
+                    </div>
                 </div>
                 
-                <div class="case-card">
-                    <h3><i class="fas fa-hand-holding-usd"></i> Payroll</h3>
-                    <p>Multi-currency payroll with automated tax withholding and compliance across jurisdictions.</p>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Seamless Integration</h3>
+                        <p>Connect to existing banking and financial systems</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -743,8 +974,8 @@
     <section class="cta-section" id="demo">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Transform Your Payment Infrastructure?</h2>
-                <p>Join financial institutions and enterprises already using FlatChain to streamline their payment systems with AI-powered efficiency.</p>
+                <h2>Ready to Transform Your Payments?</h2>
+                <p>Join financial institutions and enterprises using FlatChain to streamline their payment systems with AI-powered efficiency.</p>
                 <button class="white-button">Request a Demo</button>
             </div>
         </div>
@@ -774,8 +1005,8 @@
                     <h3>Product</h3>
                     <ul class="footer-links">
                         <li><a href="#features">Features</a></li>
-                        <li><a href="#architecture">Architecture</a></li>
-                        <li><a href="#usecases">Use Cases</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
                         <li><a href="#">Pricing</a></li>
                         <li><a href="#">API Documentation</a></li>
                     </ul>
@@ -809,7 +1040,31 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.08)';
+                header.style.padding = '15px 0';
+            }
+        });
+
+        // Feature card animations
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -827,26 +1082,36 @@
             });
         });
 
-        // Header shadow on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-            }
-        });
-
-        // Feature card animation
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
+        // Animate stats
+        function animateValue(el, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                el.textContent = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Initialize when in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statValue = entry.target.querySelector('.stat-value');
+                    if (statValue && !statValue.dataset.animated) {
+                        const endValue = parseInt(statValue.textContent);
+                        statValue.dataset.animated = true;
+                        animateValue(statValue, 0, endValue, 2000);
+                    }
+                }
             });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.stat-item').forEach(item => {
+            observer.observe(item);
         });
     </script>
 </body>
